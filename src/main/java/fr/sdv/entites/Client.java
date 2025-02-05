@@ -2,27 +2,29 @@ package fr.sdv.entites;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "livre")
-public class Livre {
+@Table(name = "client")
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
 
-    @Column(name = "TITRE", length = 50)
-    private String titre;
+    @Column(name = "NOM")
+    private String nom;
 
-    @Column(name = "AUTEUR", length = 50)
-    private String auteur;
+    @Column(name = "PRENOM")
+    private String prenom;
 
-    @ManyToMany(mappedBy = "livres")
+    @OneToMany(mappedBy = "client")
     private Set<Emprunt> emprunts;
 
-    public Livre() {
+    public Client() {
+        emprunts = new HashSet<>();
     }
 
     public int getId() {
@@ -33,20 +35,20 @@ public class Livre {
         this.id = id;
     }
 
-    public String getTitre() {
-        return titre;
+    public String getNom() {
+        return nom;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public String getAuteur() {
-        return auteur;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setAuteur(String auteur) {
-        this.auteur = auteur;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public Set<Emprunt> getEmprunts() {
@@ -59,10 +61,10 @@ public class Livre {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Livre{");
+        final StringBuilder sb = new StringBuilder("Client{");
         sb.append("id=").append(id);
-        sb.append(", titre='").append(titre).append('\'');
-        sb.append(", auteur='").append(auteur).append('\'');
+        sb.append(", nom='").append(nom).append('\'');
+        sb.append(", prenom='").append(prenom).append('\'');
         sb.append('}');
         return sb.toString();
     }
