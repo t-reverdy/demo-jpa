@@ -30,5 +30,9 @@ public class ConnexionJpa {
         }
 
         entityManager.getTransaction().commit();
+
+        entityManager.close();
+        entityManagerFactory.close();
+
     }
 }

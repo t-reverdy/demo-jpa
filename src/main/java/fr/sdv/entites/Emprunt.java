@@ -3,6 +3,7 @@ package fr.sdv.entites;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -32,6 +33,10 @@ public class Emprunt {
         joinColumns=@JoinColumn(name="ID_EMP", referencedColumnName = "ID"),
         inverseJoinColumns =@JoinColumn(name="ID_LIV", referencedColumnName = "ID"))
     private Set<Livre> livres;
+
+    {
+        livres = new HashSet<>();
+    }
 
     public Emprunt() {}
 

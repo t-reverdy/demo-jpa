@@ -2,6 +2,7 @@ package fr.sdv.entites;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,10 @@ public class Livre {
 
     @ManyToMany(mappedBy = "livres")
     private Set<Emprunt> emprunts;
+
+    {
+        emprunts = new HashSet<Emprunt>();
+    }
 
     public Livre() {
     }
